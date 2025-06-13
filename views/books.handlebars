@@ -2,9 +2,8 @@
 <div class="books-container">
     <div class="livro-folha">
       {{#each books}}
-      <div>#{{this.id}} - <span class="bold"><a href="/books/{{this.id}}">{{this.title}}</a></span> - {{this.pageqty}}
-        páginas</div>
+      <div>#{{this.id}} - <span class="bold"><a href="/books/{{this.id}}">{{this.item}}</a></span> -{{this.packs}} packs e
+      {{this.quantPorPack}} unidades </div>
       {{/each}}
     </div>
-  
 </div>

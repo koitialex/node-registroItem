@@ -1,13 +1,17 @@
-<h1>Edite o seu livro:</h1>
+<h1>Edite o seu registro:</h1>
 <form class="form" action="/books/updatebook" method="POST">
   <input type="hidden" name="id" value="{{book.id}}">
   <div class="form-control">
-    <label for="title">Título:</label>
-    <input type="text" name="title" placeholder="Título do livro" value="{{book.title}}">
+    <label for="item">Nome:</label>
+    <input type="text" name="item" placeholder="Título do livro">
   </div>
   <div class="form-control">
-    <label for="pageqty">Número de páginas:</label>
-    <input type="number" name="pageqty" placeholder="Quantas páginas o livro tem?" value="{{book.pageqty}}">
+    <label for="quantPorPack">Uniudades:</label>
+    <input type="number" name="quantPorPack" placeholder="Quantas unidade?">
   </div>
-  <input type="submit" value="Editar">
+  <div class="form-control">
+    <label for="packs">Quantidade de packs:</label>
+    <input type="number" name="packs" placeholder="Quantas páginas o livro tem?">
+  </div>
+  <input type="submit" value="Editar" id="button" class="button-edit">
 </form>

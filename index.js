@@ -22,9 +22,11 @@ app.get('/', function (req, res) {
 })
 
 app.post('/books/insertbook', function (req, res) {
-  const title = req.body.title
-  const pageqty = req.body.pageqty
-  const query = `INSERT INTO books (title, pageqty) VALUES ('${title}', ${pageqty})`
+  const item = req.body.item
+  const quantPorPack = req.body.quantPorPack
+  const packs = req.body.packs
+
+  const query = `INSERT INTO registro (item, quantPorPack, packs) VALUES ('${item}', ${quantPorPack}, ${packs})`
 
   conn.query(query, function (err) {
     if (err) {
@@ -36,7 +38,7 @@ app.post('/books/insertbook', function (req, res) {
 })
 
 app.get('/books', function (req, res) {
-  const query = `SELECT * FROM books`
+  const query = `SELECT * FROM registro`
 
   conn.query(query, function (err, data) {
     if (err) {
@@ -54,7 +56,7 @@ app.get('/books', function (req, res) {
 app.get('/books/:id', function (req, res) {
   const id = req.params.id
 
-  const query = `SELECT * FROM books WHERE id = ${id}`
+  const query = `SELECT * FROM registro WHERE id = ${id}`
 
   conn.query(query, function (err, data) {
     if (err) {
@@ -72,7 +74,7 @@ app.get('/books/:id', function (req, res) {
 app.get('/books/edit/:id', function (req, res) {
   const id = req.params.id
 
-  const query = `SELECT * FROM books WHERE id = ${id}`
+  const query = `SELECT * FROM registro WHERE id = ${id}`
 
   conn.query(query, function (err, data) {
     if (err) {
@@ -89,10 +91,11 @@ app.get('/books/edit/:id', function (req, res) {
 
 app.post('/books/updatebook', function (req, res) {
   const id = req.body.id
-  const title = req.body.title
-  const pageqty = req.body.pageqty
+  const item = req.body.item
+  const quantPorPack = req.body.quantPorPack
+  const packs = req.body.packs
 
-  const query = `UPDATE books SET title = '${title}', pageqty = ${pageqty} WHERE id = ${id}`
+  const query = `UPDATE registro SET item = '${item}', quantPorPack = ${quantPorPack}, packs = ${packs} WHERE id = ${id}`
 
   conn.query(query, function (err) {
     if (err) {
@@ -106,7 +109,7 @@ app.post('/books/updatebook', function (req, res) {
 app.post('/books/remove/:id', function (req, res) {
   const id = req.params.id
 
-  const query = `DELETE FROM books WHERE id = ${id}`
+  const query = `DELETE FROM registro WHERE id = ${id}`
 
   conn.query(query, function (err) {
     if (err) {
@@ -117,11 +120,12 @@ app.post('/books/remove/:id', function (req, res) {
   })
 })
 
+
 const conn = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '',
-  database: 'nodemysql',
+  database: 'nodemysqlregistro',
 })
 
 conn.connect(function (err) {
